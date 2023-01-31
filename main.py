@@ -22,8 +22,8 @@ def message():
 
 def get_wufoo_data1():
     response = requests.get(url, auth=(username, password))
-    data = json.dumps(response.text)
-    print(json.loads(data, indent=4, sort_keys=True))
+    data = json.loads(response.text)
+    print(json.dumps(data, indent=4, sort_keys=True))
 
 
 def get_wufoo_data2():
