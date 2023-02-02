@@ -2,7 +2,7 @@ import sys
 import requests
 import json
 from secrets import wufoo_key
-from requests.auth import HTTPBasicAuth
+
 
 subdomain = 'https://stepht15.wufoo.com/api/v3/'
 format = 'forms/cubes-project-proposal-submission/entries/json'
