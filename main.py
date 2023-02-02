@@ -12,7 +12,7 @@ password = 'helloworld'
 wufoo_file = open('txtfile.txt', 'w')
 
 
-def message():
+def message():  # comment
     response = requests.get(url, auth=(username, password))
     if response.status_code != 200:
         print(f"Failed to get data, response code:{response.status_code} and error message: {response.reason} ")
