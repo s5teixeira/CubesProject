@@ -31,6 +31,7 @@ def close_db(connection: sqlite3.Connection):
 
 
 def setup_db(cursor: sqlite3.Cursor):
+    """This function creates the table"""
     cursor.execute('''CREATE TABLE IF NOT EXISTS table_forms(
     entry_id INTEGER PRIMARY KEY,
     prefix TEXT,
@@ -45,6 +46,7 @@ def setup_db(cursor: sqlite3.Cursor):
 
 
 def make_initial_entries(cursor: sqlite3.Cursor):
+    """Inserting in my own data"""
     entry_id = 150
     prefix = "Ms"
     first_name = "Stephanie"
@@ -57,10 +59,6 @@ def make_initial_entries(cursor: sqlite3.Cursor):
     cursor.execute(f'''INSERT INTO table_forms(entry_id, prefix, first_name, last_name, Title, Organization_name,
     Email, Organization_website, phone)VALUES({entry_id}, '{prefix}' ,'{first_name}', '{last_name}', '{Title}',
     '{Organization_name}', '{Email}', '{Organization_website}', '{phone}'  )''')
-
-   #add try execpt and print tables were printed
-
-
 
 
 def message():
@@ -107,12 +105,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-    # connect_to_database()
-    # setup_db()
-    # close_db()
-    # message()
-    # get_wufoo_data1()
-    # get_wufoo_data2()
-    # get_wufoo_data3()
-    # get_wufoo_data4()
