@@ -1,2 +1,4 @@
+#/secrets.py
+#*.txt
 /secrets.py
-*.txt
+/cubesProject.sqlite

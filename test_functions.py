@@ -3,22 +3,25 @@ import sqlite3
 
 import main
 
-
-def test_connect_to_db(capfd):
-    """this function creates a fake database and makes sure it connects to it"""
-    test_db = 'wufoo_db.db'
-    sqlite3.connect(test_db)
+import getData
+import DatabaseStuff
 
 
-def test_questions_about_data():
-    """Attempted to test on my own data that I put in my database"""
-    with pytest.raises(AssertionError) as exception_info:
-        assert main.make_initial_entries(45) is False
-        assert main.make_initial_entries('Stephanie') is True
-        assert main.make_initial_entries('No') is False
-        assert main.make_initial_entries('Mac') is False
-        assert main.make_initial_entries('Booooo') is False
-        assert main.make_initial_entries('Hiiii') is False
-        assert main.make_initial_entries('Helloworld') is False
-        assert main.make_initial_entries('') is True
-    assert exception_info is AssertionError
+def test_get_data():
+    """ for this test we are just getting the data from wufoo, getting the Entries and counting them"""
+    json_data = getData.get_wufoo_data()
+    entries = json_data['Entries']
+    assert len(entries) >= 10
+
+
+def test_table_created():
+    """There were several ways to do this, some of them include wrapping inserts in try/except blocks,
+    but I took an easy way and just check to make sure my table is in the meta deable sqlite_master"""
+    connection, cursor = DatabaseStuff.open_db("test.db")
+    DatabaseStuff.create_entries_table(cursor)
+    cursor.execute("SELECT Count() FROM SQLITE_MASTER WHERE name = ?", ["WuFooData"])
+    record = cursor.fetchone()
+    number_of_rows = record[0]  # the number is the first )and only) item in the tuple
+    assert number_of_rows == 1
+
+
