@@ -54,4 +54,3 @@ def add_entries_to_db(cursor: sqlite3.Cursor, entries_data: list[dict]):
         )  # the EntryID is a string, but I want it to be a number
         entry_values = entry_values[:20]
         cursor.execute(insertStatement, entry_values)
-

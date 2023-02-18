@@ -5,7 +5,7 @@ import main
 
 import getData
 import DatabaseStuff
-
+import main
 
 def test_get_data():
     """ for this test we are just getting the data from wufoo, getting the Entries and counting them"""
@@ -23,5 +23,11 @@ def test_table_created():
     record = cursor.fetchone()
     number_of_rows = record[0]  # the number is the first )and only) item in the tuple
     assert number_of_rows == 1
+
+
+def test_connect_to_db(capfd):
+    """this function creates a fake database and makes sure it connects to it"""
+    test_db = 'wufoo_db.db'
+    sqlite3.connect(test_db)
 
 
