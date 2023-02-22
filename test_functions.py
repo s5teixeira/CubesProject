@@ -7,6 +7,7 @@ import getData
 import DatabaseStuff
 import main
 
+
 def test_get_data():
     """ for this test we are just getting the data from wufoo, getting the Entries and counting them"""
     json_data = getData.get_wufoo_data()
@@ -27,7 +28,5 @@ def test_table_created():
 
 def test_connect_to_db(capfd):
     """this function creates a fake database and makes sure it connects to it"""
-    test_db = 'wufoo_db.db'
+    test_db = 'WufooData.db'
     sqlite3.connect(test_db)
-
-
