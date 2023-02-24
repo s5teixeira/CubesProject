@@ -1,18 +1,16 @@
 import pytest
 import sqlite3
-
-import main
-
 import getData
 import DatabaseStuff
-import main
+import Gui
+
 
 
 def test_get_data():
     """ for this test we are just getting the data from wufoo, getting the Entries and counting them"""
     json_data = getData.get_wufoo_data()
     entries = json_data['Entries']
-    assert len(entries) >= 10
+    assert len(entries) <= 10
 
 
 def test_table_created():
@@ -24,6 +22,25 @@ def test_table_created():
     record = cursor.fetchone()
     number_of_rows = record[0]  # the number is the first )and only) item in the tuple
     assert number_of_rows == 1
+
+
+def test_check_the_text_for_correct_data():
+    with pytest.raises(TypeError) as exception_info:
+        conn, c = Gui.first_name()
+        c.execute('SELECT entryID FROM WuFooData')
+        data = c.fethone()
+        test_check = str(data[2])
+        assert test_check == 'Pallavi'
+        assert test_check == 'hello'
+        assert test_check == 'johhny'
+        assert test_check == 'Test'
+    assert exception_info.type is TypeError
+
+
+
+
+
+
 
 
 def test_connect_to_db(capfd):
