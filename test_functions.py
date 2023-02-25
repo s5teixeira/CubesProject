@@ -3,7 +3,7 @@ import sqlite3
 import getData
 import DatabaseStuff
 import Gui
-
+import main
 
 
 def test_get_data():
@@ -24,9 +24,10 @@ def test_table_created():
     assert number_of_rows == 1
 
 
-def test_check_the_text_for_correct_data():
+def test_check_text_for_correct_data():
+    """This function checks the correct data in the First Name field"""
     with pytest.raises(TypeError) as exception_info:
-        conn, c = Gui.first_name()
+        connection, c = Gui.first_name()
         c.execute('SELECT entryID FROM WuFooData')
         data = c.fethone()
         test_check = str(data[2])
@@ -37,6 +38,23 @@ def test_check_the_text_for_correct_data():
     assert exception_info.type is TypeError
 
 
+def test_check_text_for_correct_data2():
+    """This function checks the correct data in the Title field"""
+    with pytest.raises(TypeError) as exception_info:
+        conn, c = Gui.title()
+        c.execute('SELECT title FROM WuFooData')
+        data = c.fethone()
+        test_check = str(data[2])
+        assert test_check == 'MTA'
+        assert test_check == 'hellohello'
+        assert test_check == 'House'
+        assert test_check == 'ms'
+    assert exception_info.type is TypeError
+
+
+# def test_check_checkboxes():
+# select count(*) from employees;
+def test_data_in_database():
 
 
 
