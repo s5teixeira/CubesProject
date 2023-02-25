@@ -1,8 +1,6 @@
 from tkinter import *
 import sqlite3
 
-
-
 root = Tk()
 root.title("Cubes Project List")
 root.geometry('700x700')
@@ -265,49 +263,8 @@ def createdby():
 btn_createdby = Button(root, text="Click to see list of Created By ", command=createdby,fg='magenta').pack()
 
 
-
-#
-# def call_all_functions():
-#     """ This function calls all functions that display the data to a new window when user clicks on a selection """
-#     entryid()
-#     prefix()
-#     first_name()
-#     last_name()
-#     title()
-#     org()
-#     email()
-#     website()
-#     courseproject()
-#     guestspeaker()
-#     sitevisit()
-#     jobshadow()
-#     internship()
-#     careerpanel()
-#     networkingevent()
-#     subjectarea()
-#     description()
-#     funding()
-#     createddate()
-#     createdby()
-#
-
-#def button_for_closing():
 """Simple button for exiting the GUI"""
 exit_button = Button(root, text="Exit ", command=root.destroy).pack()
 
 
 root.mainloop()
-
-
-
-#
-# if __name__ == "__main__":
-# #    call_all_functions()
-# #    button_for_closing()
-#     root.mainloop()
-# #    c.commit()
-#     c.close()
-
-
-
-

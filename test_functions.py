@@ -3,7 +3,6 @@ import sqlite3
 import getData
 import DatabaseStuff
 import Gui
-import main
 
 
 def test_get_data():
@@ -11,6 +10,24 @@ def test_get_data():
     json_data = getData.get_wufoo_data()
     entries = json_data['Entries']
     assert len(entries) <= 10
+
+
+def test_data_in_database():
+    """This function tests to make sure there is data in database table"""
+    with pytest.raises(TypeError) as exception_info:
+        connection, c = DatabaseStuff.add_entries_to_db('entries_data')
+        c.execute('SELECT count(*) FROM WuFooData')
+        data = c.fethone()
+        assert len(data) <= 30
+    assert exception_info.type is TypeError
+
+
+def test_checkboxes():
+    """This function tests to see if there are null values(unchecked) from internship table"""
+    connection, c = Gui.internship()
+    c.execute('SELECT internship FROM WuFooData WHERE internship IS NULL')
+    data = c.fethone()
+    assert data is None
 
 
 def test_table_created():
@@ -27,8 +44,8 @@ def test_table_created():
 def test_check_text_for_correct_data():
     """This function checks the correct data in the First Name field"""
     with pytest.raises(TypeError) as exception_info:
-        connection, c = Gui.first_name()
-        c.execute('SELECT entryID FROM WuFooData')
+        conn, c = Gui.first_name()
+        c.execute('SELECT first_name FROM WuFooData')
         data = c.fethone()
         test_check = str(data[2])
         assert test_check == 'Pallavi'
@@ -50,15 +67,6 @@ def test_check_text_for_correct_data2():
         assert test_check == 'House'
         assert test_check == 'ms'
     assert exception_info.type is TypeError
-
-
-# def test_check_checkboxes():
-# select count(*) from employees;
-def test_data_in_database():
-
-
-
-
 
 
 def test_connect_to_db(capfd):
