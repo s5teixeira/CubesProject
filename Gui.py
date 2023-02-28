@@ -1,13 +1,12 @@
 from tkinter import *
 import sqlite3
-from tkinter import Tk, Label, Button
+from tkinter import Tk, Label, Button, Toplevel
 
 root = Tk()
 root.title("Cubes Project List")
 root.geometry('700x700')
 conn = sqlite3.connect("cubesProject.sqlite")
 c = conn.cursor()
-
 
 label = Label(root, text="Select one of the entries to view the entry data: ", fg='red').pack()
 
@@ -22,10 +21,6 @@ def entryid():
         Label(newWindow, text=row).pack()
 
 
-btn_entryid = Button(root, text="Click to see list of Entry ID's ", command=entryid,fg='magenta').pack()
-
-
-
 def prefix():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -34,9 +29,6 @@ def prefix():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-
-btn_prefix = Button(root, text="Click to see list of Prefix's ", command=prefix,fg='magenta').pack()
 
 
 def first_name():
@@ -49,9 +41,6 @@ def first_name():
         Label(newWindow, text=row).pack()
 
 
-
-btn = Button(root, text="Click to see list of First Names ", command=first_name, fg='magenta').pack()
-
 def last_name():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -62,8 +51,6 @@ def last_name():
         Label(newWindow, text=row).pack()
 
 
-btn_lastname = Button(root, text="Click to see list of Last Names ", command=last_name,fg='magenta').pack()
-
 def title():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -72,10 +59,6 @@ def title():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-#
-btn_title = Button(root, text="Click to see list of Title's ", command=title,fg='magenta').pack()
-
 
 
 def org():
@@ -88,8 +71,6 @@ def org():
         Label(newWindow, text=row).pack()
 
 
-btn_org = Button(root, text="Click to see list of Organizations ", command=org,fg='magenta').pack()
-
 def email():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -99,8 +80,6 @@ def email():
         print(row)
         Label(newWindow, text=row).pack()
 
-
-btn_email = Button(root, text="Click to see list of Emails ", command=email,fg='magenta').pack()
 
 def website():
     newWindow = Toplevel(root)
@@ -112,8 +91,6 @@ def website():
         Label(newWindow, text=row).pack()
 
 
-btn_website = Button(root, text="Click to see list of Website's ", command=website,fg='magenta').pack()
-
 def courseproject():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -122,9 +99,6 @@ def courseproject():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-
-btn_courseproject = Button(root, text="Click to see list of Course Projects ", command=courseproject,fg='magenta').pack()
 
 
 def guestspeaker():
@@ -137,8 +111,6 @@ def guestspeaker():
         Label(newWindow, text=row).pack()
 
 
-btn_guestspeaker = Button(root, text="Click to see list of Guest Speakers ", command=guestspeaker,fg='magenta').pack()
-
 def sitevisit():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -147,9 +119,6 @@ def sitevisit():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-
-btn_sitevisit = Button(root, text="Click to see list of Sites Visits ", command=sitevisit,fg='magenta').pack()
 
 
 def jobshadow():
@@ -162,8 +131,6 @@ def jobshadow():
         Label(newWindow, text=row).pack()
 
 
-btn_jobshadow = Button(root, text="Click to see list of Job Shadows ", command=jobshadow,fg='magenta').pack()
-
 def internship():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -174,8 +141,6 @@ def internship():
         Label(newWindow, text=row).pack()
 
 
-btn_internship = Button(root, text="Click to see list of Internships ", command=internship,fg='magenta').pack()
-
 def careerpanel():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -184,9 +149,6 @@ def careerpanel():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-
-btn_careerpanel = Button(root, text="Click to see list of Career Panels ", command=careerpanel,fg='magenta').pack()
 
 
 def networkingevent():
@@ -199,8 +161,6 @@ def networkingevent():
         Label(newWindow, text=row).pack()
 
 
-btn_networkingevent = Button(root, text="Click to see list of Networking Events ", command=networkingevent,fg='magenta').pack()
-
 def subjectarea():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -209,9 +169,6 @@ def subjectarea():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-
-btn_subjectarea = Button(root, text="Click to see list of Subject Areas ", command=subjectarea,fg='magenta').pack()
 
 
 def description():
@@ -224,8 +181,6 @@ def description():
         Label(newWindow, text=row).pack()
 
 
-btn_description = Button(root, text="Click to see list of Descriptions ", command=description,fg='magenta').pack()
-
 def funding():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -234,9 +189,6 @@ def funding():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
-
-
-btn_funding = Button(root, text="Click to see list of Fundings ", command=funding,fg='magenta').pack()
 
 
 def createddate():
@@ -249,8 +201,6 @@ def createddate():
         Label(newWindow, text=row).pack()
 
 
-btn_createddate = Button(root, text="Click to see list of Created Dates ", command=createddate,fg='magenta').pack()
-
 def createdby():
     newWindow = Toplevel(root)
     newWindow.geometry("300x300")
@@ -261,11 +211,29 @@ def createdby():
         Label(newWindow, text=row).pack()
 
 
-btn_createdby = Button(root, text="Click to see list of Created By ", command=createdby,fg='magenta').pack()
+btn_entryid = Button(root, text="Click to see list of Entry ID's ", command=entryid, fg='magenta').pack()
+btn_prefix = Button(root, text="Click to see list of Prefix's ", command=prefix, fg='magenta').pack()
+btn = Button(root, text="Click to see list of First Names ", command=first_name, fg='magenta').pack()
+btn_lastname = Button(root, text="Click to see list of Last Names ", command=last_name, fg='magenta').pack()
+btn_title = Button(root, text="Click to see list of Title's ", command=title, fg='magenta').pack()
+btn_org = Button(root, text="Click to see list of Organizations ", command=org, fg='magenta').pack()
+btn_email = Button(root, text="Click to see list of Emails ", command=email, fg='magenta').pack()
+btn_website = Button(root, text="Click to see list of Website's ", command=website, fg='magenta').pack()
+btn_courseproject = Button(root, text="Click to see list of Course Projects ", command=courseproject,fg='magenta').pack()
+btn_guestspeaker = Button(root, text="Click to see list of Guest Speakers ", command=guestspeaker, fg='magenta').pack()
+btn_sitevisit = Button(root, text="Click to see list of Sites Visits ", command=sitevisit, fg='magenta').pack()
+btn_jobshadow = Button(root, text="Click to see list of Job Shadows ", command=jobshadow, fg='magenta').pack()
+btn_internship = Button(root, text="Click to see list of Internships ", command=internship, fg='magenta').pack()
+btn_careerpanel = Button(root, text="Click to see list of Career Panels ", command=careerpanel, fg='magenta').pack()
+btn_networkingevent = Button(root, text="Click to see list of Networking Events ", command=networkingevent,fg='magenta').pack()
+btn_subjectarea = Button(root, text="Click to see list of Subject Areas ", command=subjectarea, fg='magenta').pack()
+btn_description = Button(root, text="Click to see list of Descriptions ", command=description, fg='magenta').pack()
+btn_funding = Button(root, text="Click to see list of Fundings ", command=funding, fg='magenta').pack()
+btn_createddate = Button(root, text="Click to see list of Created Dates ", command=createddate, fg='magenta').pack()
+btn_createdby = Button(root, text="Click to see list of Created By ", command=createdby, fg='magenta').pack()
 
 
 """Simple button for exiting the GUI"""
 exit_button = Button(root, text="Exit ", command=root.destroy).pack()
 
-
-#root.mainloop()
+# root.mainloop()

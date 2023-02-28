@@ -2,7 +2,6 @@ from DatabaseStuff import open_db, close_db
 import DatabaseStuff
 import getData
 import sys
-
 from Gui import root
 
 db_name = "cubesProject.sqlite"
@@ -40,7 +39,5 @@ def main():
 
 
 
-
 if __name__ == "__main__":
     main()
-
