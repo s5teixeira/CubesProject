@@ -8,7 +8,7 @@ from Gui import root
 db_name = "cubesProject.sqlite"
 
 
-def sprint2():  # comment for force workflow
+def database():  # comment for force workflow
     json_response = getData.get_wufoo_data()
     entries_list = json_response["Entries"]
     print(entries_list[10])
@@ -17,7 +17,7 @@ def sprint2():  # comment for force workflow
     DatabaseStuff.add_entries_to_db(cursor, entries_list)
     close_db(conn)
 
-def sprint3():
+def data_visualization():
     root.mainloop()
 
 def show_options():
@@ -31,9 +31,9 @@ def main():
     show_options()
     answer = input("Please enter your choice:")
     if answer == "1":
-        sprint2()
+        database()
     elif answer == "2":
-        sprint3()
+        data_visualization()
     else:
         print("Invalid Entry, ending program...")
         sys.exit(0)  # exit successfully

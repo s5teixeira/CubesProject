@@ -1,5 +1,6 @@
 from tkinter import *
 import sqlite3
+from tkinter import Tk, Label, Button
 
 root = Tk()
 root.title("Cubes Project List")
