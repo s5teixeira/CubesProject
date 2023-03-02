@@ -1,4 +1,3 @@
-from tkinter import *
 import sqlite3
 from tkinter import Tk, Label, Button, Toplevel
 
@@ -7,8 +6,6 @@ root.title("Cubes Project List")
 root.geometry('700x700')
 conn = sqlite3.connect("cubesProject.sqlite")
 c = conn.cursor()
-
-label = Label(root, text="Select one of the entries to view the entry data: ", fg='red').pack()
 
 
 def entryid():
@@ -211,6 +208,7 @@ def createdby():
         Label(newWindow, text=row).pack()
 
 
+label = Label(root, text="Select one of the entries to view the entry data: ", fg='red').pack()
 btn_entryid = Button(root, text="Click to see list of Entry ID's ", command=entryid, fg='magenta').pack()
 btn_prefix = Button(root, text="Click to see list of Prefix's ", command=prefix, fg='magenta').pack()
 btn = Button(root, text="Click to see list of First Names ", command=first_name, fg='magenta').pack()
