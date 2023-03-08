@@ -37,16 +37,16 @@ def create_entries_table(cursor: sqlite3.Cursor):
     funding BOOLEAN,
     created_date TEXT,
     created_by TEXT);"""
-    create_statement2 = """CREATE TABLE IF NOT EXISTS user_records(
-    rec_num TEXT,
-    first_name TEXT,
-    last_name TEXT,
-    title TEXT,
-    bsu_email PRIMARY KEY,
-    dept TEXT,
-    FOREIGN KEY (rec_num) REFERENCES WuFooData(entryID));"""
+    # create_statement2 = """CREATE TABLE IF NOT EXISTS user_records(
+    # rec_num TEXT,
+    # first_name TEXT,
+    # last_name TEXT,
+    # title TEXT,
+    # bsu_email PRIMARY KEY,
+    # dept TEXT,
+    # FOREIGN KEY (rec_num) REFERENCES WuFooData(entryID));"""
     cursor.execute(create_statement)
-    cursor.execute(create_statement2)
+ #   cursor.execute(create_statement2)
 
 def add_entries_to_db(cursor: sqlite3.Cursor, entries_data: list[dict]):
     # the insert or ignore syntax will insert if the primary key isn't in use or ignore if the primary key is in the DB
