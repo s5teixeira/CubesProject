@@ -26,7 +26,6 @@ def show_options():
     print("[2] Run the Graphical Program")
     print("=======================================")
 
-
 def main():
     show_options()
     answer = input("Please enter your choice:")
