@@ -19,11 +19,3 @@ def update_records_from_database():
     conn.commit()
     conn.close()
     print('You have updated the data in the database successfully, please refresh database to see changes :) ')
-    # still need to update to make spaces for input and int values
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 import sqlite3
-from tkinter import Tk, Label, Button, Toplevel, Text, Entry, StringVar, OptionMenu
+from tkinter import Tk, Label, Button, Toplevel, Entry
 
 root = Tk()
 root.title("Cubes Project List")
@@ -7,28 +7,63 @@ root.geometry('1000x1000')
 conn = sqlite3.connect("cubesProject.sqlite")
 c = conn.cursor()
 
-#create form fields for user records
-label_bsuEmail = Label(root, text="Bsu Email").grid(row=15, column=1)
-entry_bsuEmail = Entry(root).grid(row=14, column=2)
+# create form fields for user records
+label_bsuEmail = Label(root, text="Bsu Email")
+label_bsuEmail.grid(row=12, column=1)
 
-label_first_name = Label(root, text="First name").grid(row=12, column=1)
-entry_first_name = Entry(root).grid(row=12, column=2)
+entry_bsuEmail = Entry(root)
+entry_bsuEmail.grid(row=12, column=2)
 
-label_last_name = Label(root, text="Last name").grid(row=13, column=1)
-entry_last_name = Entry(root).grid(row=13, column=2)
+label_first_name = Label(root, text="First name")
+label_first_name.grid(row=13, column=1)
 
-label_title = Label(root, text="Title").grid(row=14, column=1)
-entry_title = Entry(root).grid(row=14, column=2)
+entry_first_name = Entry(root)
+entry_first_name.grid(row=13, column=2)
 
-label_dept = Label(root, text="Department").grid(row=16, column=1)
-entry_dept = Entry(root).grid(row=15, column=2)
+label_last_name = Label(root, text="Last name")
+label_last_name.grid(row=14, column=1)
+
+entry_last_name = Entry(root)
+entry_last_name.grid(row=14, column=2)
+
+label_title = Label(root, text="Title")
+label_title.grid(row=15, column=1)
+
+entry_title = Entry(root)
+entry_title.grid(row=15, column=2)
+
+label_dept = Label(root, text="Department")
+label_dept.grid(row=16, column=1)
+
+entry_dept = Entry(root)
+entry_dept.grid(row=16, column=2)
 
 
+def button_click():
+    bsuEmail = entry_bsuEmail.get()
+    first_name = entry_first_name.get()
+    last_name = entry_last_name.get()
+    title = entry_title.get()
+    dept = entry_dept.get()
+
+    # inserting the data
+    insert_data(bsuEmail, first_name, last_name, title, dept)
+
+    # clearing the form fields
+    entry_bsuEmail.delete(0, root.END)
+    entry_first_name.delete(0, root.END)
+    entry_last_name.delete(0, root.END)
+    entry_title.delete(0, root.END)
+    entry_dept.delete(0, root.END)
 
 
-
-
-
+def insert_data(bsuEmail, first_name, last_name, title, dept):
+    conn = sqlite3.connect('user_records.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO users (bsuEmail, first_name, last_name, title, dept) VALUES (?, ?, ?, ?, ?)",
+                (bsuEmail, first_name, last_name, title, dept))
+    conn.commit()
+    conn.close()
 
 
 def entryid():
@@ -101,7 +136,8 @@ def email():
         Label(newWindow, text=row).pack()
 
 
-label1 = Label(root, text="Some of the data listed below shows Organization Name, First Name, and Last Name.",fg='red').grid(row=1, column=1)
+label1 = Label(root, text="Some of the data listed below shows Organization Name, First Name, and Last Name.",fg='red')
+label1.grid(row=1, column=1)
 
 data1 = c.execute('SELECT org, first_name, last_name FROM WuFooData WHERE entryID = 1 ')
 for i in data1:
@@ -138,14 +174,27 @@ for h in data7:
     print(h)
     Label(root, text=h).grid(row=9, column=1)
 
-btn_entryid = Button(root, text="Click to see complete entry data ", command=entryid, fg='magenta').grid(row=3,column=2)
-btn_prefix = Button(root, text="Click to see complete entry data ", command=prefix, fg='magenta').grid(row=4, column=2)
-btn = Button(root, text="Click to see complete entry data ", command=first_name, fg='magenta').grid(row=5, column=2)
-btn_lastname = Button(root, text="Click to see complete entry data ", command=last_name, fg='magenta').grid(row=6,column=2)
-btn_title = Button(root, text="Click to see complete entry data", command=title, fg='magenta').grid(row=7, column=2)
-btn_org = Button(root, text="Click to see complete entry data", command=org, fg='magenta').grid(row=8, column=2)
-btn_email = Button(root, text="Click to see complete entry data ", command=email, fg='magenta').grid(row=9, column=2)
+# all buttons
+btn_entryid = Button(root, text="Click to see complete entry data ", command=entryid, fg='magenta')
+btn_entryid.grid(row=3,column=2)
 
+btn_prefix = Button(root, text="Click to see complete entry data ", command=prefix, fg='magenta')
+btn_prefix.grid(row=4, column=2)
+
+btn = Button(root, text="Click to see complete entry data ", command=first_name, fg='magenta')
+btn.grid(row=5, column=2)
+
+btn_lastname = Button(root, text="Click to see complete entry data ", command=last_name, fg='magenta')
+btn_lastname.grid(row=6,column=2)
+
+btn_title = Button(root, text="Click to see complete entry data", command=title, fg='magenta')
+btn_title.grid(row=7, column=2)
+
+btn_org = Button(root, text="Click to see complete entry data", command=org, fg='magenta')
+btn_org.grid(row=8, column=2)
+
+btn_email = Button(root, text="Click to see complete entry data ", command=email, fg='magenta')
+btn_email.grid(row=9, column=2)
 
 def change_color_button():
     """This function changes the selection button after its clicked """
@@ -159,15 +208,36 @@ def change_color_button():
 
 
 # SELECTION BUTTON
-btn_select1 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=3, column=3)
-btn_select2 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=4, column=3)
-btn_select3 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=5, column=3)
-btn_select4 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=6, column=3)
-btn_select5 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=7, column=3)
-btn_select6 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=8, column=3)
-btn_select7 = Button(root, text="Select to claim Project", command=change_color_button).grid(row=9, column=3)
+btn_select1 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select1.grid(row=3, column=3)
+
+btn_select2 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select2.grid(row=4, column=3)
+
+btn_select3 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select3.grid(row=5, column=3)
+
+btn_select4 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select4.grid(row=6, column=3)
+
+btn_select5 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select5.grid(row=7, column=3)
+
+btn_select6 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select6.grid(row=8, column=3)
+
+btn_select7 = Button(root, text="Select to claim Project", command=change_color_button)
+btn_select7.grid(row=9, column=3)
+
+
+""" Simple button for submitting user records info """
+submit_button = Button(root, text="Submit Info", command=button_click, fg='green')
+submit_button.grid(row=20, column=2)
 
 """Simple button for exiting the GUI"""
-#exit_button = Button(root, text="Exit ", command=root.destroy, fg='orange').grid(row=15, column=2)
+exit_button = Button(root, text="Exit ", command=root.destroy, fg='orange')
+exit_button.grid(row=19, column=2)
+
+
 
 root.mainloop()
