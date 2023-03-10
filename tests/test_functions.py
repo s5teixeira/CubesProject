@@ -42,7 +42,7 @@ def test_table_created():
 
 
 def test_check_text_for_correct_data():
-    """This function checks the correct data in the First Name field"""
+    """This function checks the correct data in the first name field"""
     with pytest.raises(TypeError) as exception_info:
         conn, c = Gui.first_name()
         c.execute('SELECT first_name FROM WuFooData')
@@ -87,7 +87,7 @@ def test_user_autofill_data_from_email():
 
 
 def test_user_creation(user_records):
-    """This function tests a user with a duplicate username and verifies that it raises an exception: """
+    """This function tests a user with a duplicate username and verifies that it raises an exception """
     user1 = ("Steph", " Dr", " Hello1")
     user2 = ("Steph", " Mrs", " Hello2")
     user3 = ("Steph", "Ms", "Hello3")
