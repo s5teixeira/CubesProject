@@ -1,3 +1,4 @@
+import Gui
 import update_database
 from DatabaseStuff import open_db, close_db
 import DatabaseStuff
@@ -7,24 +8,29 @@ from Gui import root
 
 db_name = "cubesProject.sqlite"
 
+
 def database():
     json_response = getData.get_wufoo_data()
     entries_list = json_response["Entries"]
     conn, cursor = open_db(db_name)
     DatabaseStuff.create_entries_table(cursor)
     DatabaseStuff.create_table_for_users(cursor)
+    Gui.button_click()
     DatabaseStuff.add_entries_to_db(cursor, entries_list)
     close_db(conn)
 
+
 def data_visualization():
-    root.mainloop()
     database()
+    root.mainloop()
+
 
 def show_options():
     print("=======================================")
     print("[1] Update the database with wufoo data")
     print("[2] Run the Graphical Program")
     print("=======================================")
+
 
 def main():
     show_options()
@@ -36,6 +42,7 @@ def main():
     else:
         print("Invalid Entry, ending program...")
         sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

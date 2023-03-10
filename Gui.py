@@ -38,6 +38,8 @@ label_dept.grid(row=16, column=1)
 
 entry_dept = Entry(root)
 entry_dept.grid(row=16, column=2)
+
+
 def button_click():
     """This functions gets the data from the form fields and deletes it after  """
     bsuEmail = entry_bsuEmail.get()
@@ -51,6 +53,8 @@ def button_click():
     entry_last_name.delete(0, root.END)
     entry_title.delete(0, root.END)
     entry_dept.delete(0, root.END)
+
+
 def user_autofill_data_from_email(cursor: sqlite3.Cursor):
     """This function autofills the users data based off the database"""
     cursor.execute(f"SELECT * FROM user_records WHERE bsuEmail=?", (entry_bsuEmail.get(), ))
@@ -66,6 +70,8 @@ def user_autofill_data_from_email(cursor: sqlite3.Cursor):
         entry_dept.insert((0, bsuemail[0]))
     conn.close()
 
+
+
 """These functions are the window pop opps when selecting an entry to view the entire data """
 def entryid():
     newWindow = Toplevel(root)
@@ -76,6 +82,7 @@ def entryid():
         print(row, end='')
         Label(newWindow, text=row).pack()
 
+
 def prefix():
     newWindow = Toplevel(root)
     newWindow.geometry("500x500")
@@ -84,6 +91,7 @@ def prefix():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
+
 
 def first_name():
     newWindow = Toplevel(root)
@@ -94,6 +102,7 @@ def first_name():
         print(row)
         Label(newWindow, text=row).pack()
 
+
 def last_name():
     newWindow = Toplevel(root)
     newWindow.geometry("500x500")
@@ -102,6 +111,7 @@ def last_name():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
+
 
 def title():
     newWindow = Toplevel(root)
@@ -112,6 +122,7 @@ def title():
         print(row)
         Label(newWindow, text=row).pack()
 
+
 def org():
     newWindow = Toplevel(root)
     newWindow.geometry("500x500")
@@ -120,6 +131,7 @@ def org():
     for row in content:
         print(row)
         Label(newWindow, text=row).pack()
+
 
 def email():
     newWindow = Toplevel(root)
@@ -200,6 +212,7 @@ def change_color_button():
     btn_select5.config(bg="blue", text="SELECTED")
     btn_select6.config(bg="blue", text="SELECTED")
     btn_select7.config(bg="blue", text="SELECTED")
+
 
 btn_select1 = Button(root, text="Select to claim Project", command=change_color_button)
 btn_select1.grid(row=3, column=3)

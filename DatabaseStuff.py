@@ -7,11 +7,9 @@ def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
     )  # connect to existing DB or create new one
     cursor = db_connection.cursor()  # get ready to read/write data
     return db_connection, cursor
-
 def close_db(connection: sqlite3.Connection):
     connection.commit()  # make sure any changes get saved
     connection.close()
-
 def create_table_for_users(cursor: sqlite3.Cursor):
     """This function creates a database form the users info"""
     try:
@@ -24,17 +22,17 @@ def create_table_for_users(cursor: sqlite3.Cursor):
     except TypeError:
         print('Unable to create users table :(')
         tkinter.messagebox.showwarning('Sqlite Error', 'Unable to create table :( ')
-
-def insert_user_data_to_table(cursor: sqlite3.Cursor, bsuEmail, first_name, last_name, title, dept):
+def insert_user_data_to_table(cursor: sqlite3.Cursor, entry_bsuEmail, entry_first_name, entry_last_name, entry_title,
+                              entry_dept):
     """This function inserts the users data into the database"""
     try:
-        cursor.execute(f"""INSERT INTO users_records {bsuEmail}, {first_name}, {last_name}, {title}, {dept}) 
-        VALUES (?, ?, ?, ?, ?)",
-        (bsuEmail, first_name, last_name, title, dept); """)
+        cursor.execute(
+            f"""INSERT INTO users_records '{entry_bsuEmail.get()}', '{entry_first_name.get()}',
+        '{entry_last_name.get()}', '{entry_title.get()}', '{entry_dept.get()}' 
+        VALUES(?, ?, ?, ?, ?)""")
     except TypeError:
         print('Unable to insert values into table :(')
         tkinter.messagebox.showwarning('Sqlite Error', 'Unable to insert values into table :( ')
-
 def create_entries_table(cursor: sqlite3.Cursor):
     create_statement = """CREATE TABLE IF NOT EXISTS WuFooData(
     entryID INTEGER PRIMARY KEY,
