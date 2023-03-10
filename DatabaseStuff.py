@@ -1,15 +1,21 @@
 import sqlite3
 import tkinter.messagebox
 from typing import Tuple
+
+
 def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
     db_connection = sqlite3.connect(
         filename
     )  # connect to existing DB or create new one
     cursor = db_connection.cursor()  # get ready to read/write data
     return db_connection, cursor
+
+
 def close_db(connection: sqlite3.Connection):
     connection.commit()  # make sure any changes get saved
     connection.close()
+
+
 def create_table_for_users(cursor: sqlite3.Cursor):
     """This function creates a database form the users info"""
     try:
@@ -22,6 +28,8 @@ def create_table_for_users(cursor: sqlite3.Cursor):
     except TypeError:
         print('Unable to create users table :(')
         tkinter.messagebox.showwarning('Sqlite Error', 'Unable to create table :( ')
+
+
 def insert_user_data_to_table(cursor: sqlite3.Cursor, entry_bsuEmail, entry_first_name, entry_last_name, entry_title,
                               entry_dept):
     """This function inserts the users data into the database"""
@@ -33,6 +41,8 @@ def insert_user_data_to_table(cursor: sqlite3.Cursor, entry_bsuEmail, entry_firs
     except TypeError:
         print('Unable to insert values into table :(')
         tkinter.messagebox.showwarning('Sqlite Error', 'Unable to insert values into table :( ')
+
+
 def create_entries_table(cursor: sqlite3.Cursor):
     create_statement = """CREATE TABLE IF NOT EXISTS WuFooData(
     entryID INTEGER PRIMARY KEY,
@@ -56,6 +66,8 @@ def create_entries_table(cursor: sqlite3.Cursor):
     created_date TEXT,
     created_by TEXT);"""
     cursor.execute(create_statement)
+
+
 def add_entries_to_db(cursor: sqlite3.Cursor, entries_data: list[dict]):
     # the insert or ignore syntax will insert if the primary key isn't in use or ignore if the primary key is in the DB
     insertStatement = """INSERT OR IGNORE INTO WuFooData (entryID, prefix, first_name, last_name, title, org, email, website,
