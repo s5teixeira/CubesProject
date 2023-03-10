@@ -57,7 +57,7 @@ def button_click():
 
 def user_autofill_data_from_email(cursor: sqlite3.Cursor):
     """This function autofills the users data based off the database"""
-    cursor.execute(f"SELECT * FROM user_records WHERE bsuEmail=?", (entry_bsuEmail.get(), ))
+    cursor.execute("SELECT * FROM user_records WHERE bsuEmail=?", (entry_bsuEmail.get(), ))
     bsuemail = cursor.fetchone()
     if bsuemail:
         entry_first_name.delete(0, root.END)
@@ -201,6 +201,7 @@ btn_org.grid(row=8, column=2)
 
 btn_email = Button(root, text="Click to see complete entry data ", command=email, fg='magenta')
 btn_email.grid(row=9, column=2)
+
 
 def change_color_button():
     """This function changes the selection button after its clicked """
