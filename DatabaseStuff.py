@@ -1,7 +1,6 @@
 import sqlite3
 import tkinter.messagebox
 from typing import Tuple
-
 def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
     db_connection = sqlite3.connect(
         filename
@@ -22,16 +21,17 @@ def create_table_for_users(cursor: sqlite3.Cursor):
         last_name TEXT,
         title TEXT,
         dept TEXT );""")
-    except TypeError as error:
+    except TypeError:
         print('Unable to create users table :(')
         tkinter.messagebox.showwarning('Sqlite Error', 'Unable to create table :( ')
 
 def insert_user_data_to_table(cursor: sqlite3.Cursor, bsuEmail, first_name, last_name, title, dept):
     """This function inserts the users data into the database"""
     try:
-        cursor.execute(f"""INSERT INTO users_records {bsuEmail}, {first_name}, {last_name}, {title}, {dept}) VALUES (?, ?, ?, ?, ?)",
-            (bsuEmail, first_name, last_name, title, dept); """)
-    except TypeError as error:
+        cursor.execute(f"""INSERT INTO users_records {bsuEmail}, {first_name}, {last_name}, {title}, {dept}) 
+        VALUES (?, ?, ?, ?, ?)",
+        (bsuEmail, first_name, last_name, title, dept); """)
+    except TypeError:
         print('Unable to insert values into table :(')
         tkinter.messagebox.showwarning('Sqlite Error', 'Unable to insert values into table :( ')
 

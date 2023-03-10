@@ -17,8 +17,8 @@ def database():
     close_db(conn)
 
 def data_visualization():
-    database()
     root.mainloop()
+    database()
 
 def show_options():
     print("=======================================")

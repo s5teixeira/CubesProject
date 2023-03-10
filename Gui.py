@@ -38,7 +38,6 @@ label_dept.grid(row=16, column=1)
 
 entry_dept = Entry(root)
 entry_dept.grid(row=16, column=2)
-
 def button_click():
     """This functions gets the data from the form fields and deletes it after  """
     bsuEmail = entry_bsuEmail.get()
@@ -70,7 +69,7 @@ def user_autofill_data_from_email(cursor: sqlite3.Cursor):
 """These functions are the window pop opps when selecting an entry to view the entire data """
 def entryid():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 1').fetchall()
     for row in content:
@@ -79,7 +78,7 @@ def entryid():
 
 def prefix():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 2').fetchall()
     for row in content:
@@ -88,7 +87,7 @@ def prefix():
 
 def first_name():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 3').fetchall()
     for row in content:
@@ -97,7 +96,7 @@ def first_name():
 
 def last_name():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 4').fetchall()
     for row in content:
@@ -106,7 +105,7 @@ def last_name():
 
 def title():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 5').fetchall()
     for row in content:
@@ -115,7 +114,7 @@ def title():
 
 def org():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 6').fetchall()
     for row in content:
@@ -124,7 +123,7 @@ def org():
 
 def email():
     newWindow = Toplevel(root)
-    newWindow.geometry("300x300")
+    newWindow.geometry("500x500")
     newWindow.title('Data: ')
     content = c.execute('SELECT * FROM WuFooData WHERE entryID = 7').fetchall()
     for row in content:
@@ -230,5 +229,3 @@ submit_button.grid(row=20, column=2)
 """Simple button for exiting the GUI"""
 exit_button = Button(root, text="Exit ", command=root.destroy, fg='orange')
 exit_button.grid(row=19, column=2)
-
-root.mainloop()
