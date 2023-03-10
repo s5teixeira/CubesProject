@@ -1,6 +1,6 @@
 import sqlite3
+import tkinter.messagebox
 from typing import Tuple
-
 
 def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
     db_connection = sqlite3.connect(
@@ -9,11 +9,31 @@ def open_db(filename: str) -> Tuple[sqlite3.Connection, sqlite3.Cursor]:
     cursor = db_connection.cursor()  # get ready to read/write data
     return db_connection, cursor
 
-
 def close_db(connection: sqlite3.Connection):
     connection.commit()  # make sure any changes get saved
     connection.close()
 
+def create_table_for_users(cursor: sqlite3.Cursor):
+    """This function creates a database form the users info"""
+    try:
+        cursor.execute("""CREATE TABLE IF NOT EXISTS user_records(
+        bsuEmail PRIMARY KEY,
+        first_name TEXT,
+        last_name TEXT,
+        title TEXT,
+        dept TEXT );""")
+    except TypeError as error:
+        print('Unable to create users table :(')
+        tkinter.messagebox.showwarning('Sqlite Error', 'Unable to create table :( ')
+
+def insert_user_data_to_table(cursor: sqlite3.Cursor, bsuEmail, first_name, last_name, title, dept):
+    """This function inserts the users data into the database"""
+    try:
+        cursor.execute(f"""INSERT INTO users_records {bsuEmail}, {first_name}, {last_name}, {title}, {dept}) VALUES (?, ?, ?, ?, ?)",
+            (bsuEmail, first_name, last_name, title, dept); """)
+    except TypeError as error:
+        print('Unable to insert values into table :(')
+        tkinter.messagebox.showwarning('Sqlite Error', 'Unable to insert values into table :( ')
 
 def create_entries_table(cursor: sqlite3.Cursor):
     create_statement = """CREATE TABLE IF NOT EXISTS WuFooData(
@@ -37,17 +57,7 @@ def create_entries_table(cursor: sqlite3.Cursor):
     funding BOOLEAN,
     created_date TEXT,
     created_by TEXT);"""
-    # create_statement2 = """CREATE TABLE IF NOT EXISTS user_records(
-    # rec_num TEXT,
-    # first_name TEXT,
-    # last_name TEXT,
-    # title TEXT,
-    # bsu_email PRIMARY KEY,
-    # dept TEXT,
-    # FOREIGN KEY (rec_num) REFERENCES WuFooData(entryID));"""
     cursor.execute(create_statement)
- #   cursor.execute(create_statement2)
-
 def add_entries_to_db(cursor: sqlite3.Cursor, entries_data: list[dict]):
     # the insert or ignore syntax will insert if the primary key isn't in use or ignore if the primary key is in the DB
     insertStatement = """INSERT OR IGNORE INTO WuFooData (entryID, prefix, first_name, last_name, title, org, email, website,

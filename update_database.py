@@ -1,12 +1,9 @@
 import sqlite3
-
-
 conn = sqlite3.connect("cubesProject.sqlite")
 c = conn.cursor()
 
-
-# prompt user to update the data from the database
-def update_records_from_database():
+def update_records_from_table():
+    """This function prompts users to update the data from the database """
     print("You have selected to update the data from the database :) ")
     update_column = input('Enter the column to update: \n ')
     new_value = input('Enter the new value: \n ')
