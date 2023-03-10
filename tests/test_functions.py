@@ -103,4 +103,3 @@ def test_gui_elements_present():
     assert isinstance(Gui.label_dept, Gui.root.Label)
     assert isinstance(Gui.btn_org, Gui.root.Button)
     assert isinstance(Gui.label_last_name, Gui.root.Label)
-

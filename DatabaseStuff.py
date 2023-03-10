@@ -36,7 +36,7 @@ def insert_user_data_to_table(cursor: sqlite3.Cursor, entry_bsuEmail, entry_firs
     try:
         cursor.execute(
             f"""INSERT INTO users_records '{entry_bsuEmail.get()}', '{entry_first_name.get()}',
-        '{entry_last_name.get()}', '{entry_title.get()}', '{entry_dept.get()}' 
+        '{entry_last_name.get()}', '{entry_title.get()}', '{entry_dept.get()}'
         VALUES(?, ?, ?, ?, ?)""")
     except TypeError:
         print('Unable to insert values into table :(')

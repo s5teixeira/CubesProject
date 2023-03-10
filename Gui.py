@@ -71,9 +71,8 @@ def user_autofill_data_from_email(cursor: sqlite3.Cursor):
     conn.close()
 
 
-
-"""These functions are the window pop opps when selecting an entry to view the entire data """
 def entryid():
+    """These functions are the window pop opps when selecting an entry to view the entire data """
     newWindow = Toplevel(root)
     newWindow.geometry("500x500")
     newWindow.title('Data: ')
