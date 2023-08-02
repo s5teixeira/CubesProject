@@ -1,8 +1,20 @@
-1. Stephanie Teixeira
-2. Need pip installed, need all imports especially Tkinter.
-run python3 main.py (on my mac machine)
-3. This project creates a GUI that displays the entries from my wufoo form. It shows the complete data of all the entries that the user can select, and once selected it displays a window of all the entries from the form.
-Additional features were added, and a user can now select a CUBES project to claim.
-4. What works: Lint with flake8 passed, 2 tables created in database,GUI list shows, complete data should pop up once selected from a button, button should appear differently, and there is area for user to put in records.
-What doesn't work: some of my tests doesn't pass. The users data does not go in table - when info is submitted with button, tkinter errors pop up.
-5. Form: https://stepht15.wufoo.com/forms/cubes-project-proposal-submission
+
+ Run main.py to launch the program.
+
+# Summary of Project:
+The program is a GUI that allows users to claim CUBES projects. It uses the Wufoo API to download the entries data from a Wufoo form by sending an HTTP GET request, converting the HTTP GET response into JSON, and extracting the entries data from JSON. The entries data are saved to a database. The entries data from the database are displayed in the GUI. Users can fill in their own information to claim their selected entries. An entry can only be claimed once, but a user can claim multiple entries.
+
+# Database Layout:
+The database consists of 3 tables: entries, users, and claims.
+
+# What opens on program launch:
+-Prompts the user to choose to either update the data in the database or run the data visualization. The user should choose to update the data in the database at least once before running the data visualization. GUI remains running after updating the data in the database.
+
+-Closes after the user chooses an option.
+
+# GUI Layout:
+Portrays the Entries List, Entry Data, Claim, and User Data. Click on one of these buttons and the data will appear on a pop up window. 
+
+# Form:
+ https://stepht15.wufoo.com/forms/cubes-project-proposal-submission
+
